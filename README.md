@@ -5,4 +5,4 @@
 
 npm install aos --save
 
-![Uploading image.png…]()
+![Снимок экрана 2024-01-23 172433](https://github.com/Gelendwvwvwvein/Tutor_Website/assets/122689048/55c42a83-e857-4e2f-a230-fc124292fd4f)

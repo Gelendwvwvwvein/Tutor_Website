@@ -874,7 +874,8 @@ mark{
   width: 14.5vw;
 }
 .bloc-info-doc{
-  margin: 2.5vw 2vw;
+  margin: 0 2vw;
+  padding: 2.5vw 0;
 }
 #comments{
   background-color: #3888FF;
@@ -1017,7 +1018,7 @@ blockquote{
 .doc-4{
   top: 2vw;
 }
-#Vector_r, #Vector_l, .price_p2, .lesson_copy, #Vector_r_price, #Vector_l_price, #menu_bloc{
+#Vector_r, #Vector_l, .price_p2, .lesson_copy, #Vector_r_price, #Vector_l_price, #menu_bloc, .abaut-blox-inside .ellipsis{
   display: none;
 }
 .hint{
@@ -1697,5 +1698,34 @@ blockquote{
   }
   .footer-links{
     display: none;
+  }
+}
+@media screen and (max-height: 930px) and (max-width: 390px){
+  #abaut{
+    margin-top: 70vh;
+  }
+  #All_promo_icon{
+    top: 4vw;
+    left: 1vh;
+    width: 22vh;
+  }
+  #personal_interests{
+    margin-top: 330vw;
+  }
+}
+@media screen and (max-height: 680px) and (max-width: 380px){
+  #All_promo_icon{
+    width: 20vh;
+  }
+  #personal_interests{
+    margin-top: 310vw;
+  }
+}
+@media screen and (max-height: 680px) and (max-width: 300px){
+  #All_promo_icon{
+    width: 20vh;
+  }
+  #personal_interests{
+    margin-top: 350vw;
   }
 }

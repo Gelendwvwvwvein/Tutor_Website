@@ -50,53 +50,43 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 
 
-// Получаем элементы по id или классу
-var vector_r_price = document.getElementById("Vector_r_price");
-var vector_l_price = document.getElementById("Vector_l_price");
-var price_bloc_1 = document.getElementById("price-bloc_1");
-var price_bloc_2 = document.getElementById("price-bloc_2");
-var price_bloc_3 = document.getElementById("price-bloc_3");
-var new_format = document.getElementsByClassName("new_format")[0];
-
-// Функция для переключения стиля display
-function toggleDisplay(el, displayValue) {
-  el.style.display = displayValue;
-}
-
-// Функция для обработки клика по vector_r_price
-function handleClickR() {
-  if (window.getComputedStyle(price_bloc_2).getPropertyValue('display') === "block") {
-    toggleDisplay(price_bloc_2, "none");
-    toggleDisplay(vector_r_price, "none");
-    toggleDisplay(price_bloc_3, "block");
-    toggleDisplay(new_format, "block");
-  } else if (window.getComputedStyle(price_bloc_1).getPropertyValue('display') === "block") {
-    toggleDisplay(price_bloc_1, "none");
-    toggleDisplay(price_bloc_2, "block");
-    toggleDisplay(vector_l_price, "block");
-    toggleDisplay(new_format, "none");
+  var vector_r_price = document.getElementById("Vector_r_price");
+  var vector_l_price = document.getElementById("Vector_l_price");
+  var price_blocs = document.querySelectorAll(".price-bloc");
+  var new_format = document.querySelector(".new_format");
+  
+  var currentIndex = 0; // Индекс текущего отображаемого блока
+  
+  function toggleDisplay(el, displayValue) {
+    el.style.display = displayValue;
   }
-}
-
-// Функция для обработки клика по vector_l_price
-function handleClickL() {
-  if (window.getComputedStyle(price_bloc_2).getPropertyValue('display') === "block") {
-    toggleDisplay(price_bloc_2, "none");
-    toggleDisplay(vector_l_price, "none");
-    toggleDisplay(price_bloc_1, "block");
-    toggleDisplay(new_format, "none");
-  } else if (window.getComputedStyle(price_bloc_3).getPropertyValue('display') === "block") {
-    toggleDisplay(price_bloc_3, "none");
-    toggleDisplay(price_bloc_2, "block");
-    toggleDisplay(vector_r_price, "block");
-    toggleDisplay(new_format, "none");
+  
+  function handleClickR() {
+    toggleDisplay(price_blocs[currentIndex], "none");
+    currentIndex = (currentIndex + 1) % price_blocs.length;
+    toggleDisplay(price_blocs[currentIndex], "block");
+    toggleNewFormatVisibility();
   }
-}
-
-// Добавляем обработчики событий на элементы
-vector_r_price.addEventListener("click", handleClickR);
-vector_l_price.addEventListener("click", handleClickL);
-
+  
+  function handleClickL() {
+    toggleDisplay(price_blocs[currentIndex], "none");
+    currentIndex = (currentIndex - 1 + price_blocs.length) % price_blocs.length;
+    toggleDisplay(price_blocs[currentIndex], "block");
+    toggleNewFormatVisibility();
+  }
+  
+  function toggleNewFormatVisibility() {
+    // Если отображается price_bloc_3, то отобразить .new_format, в противном случае - скрыть
+    if (currentIndex === 2) {
+      toggleDisplay(new_format, "block");
+    } else {
+      toggleDisplay(new_format, "none");
+    }
+  }
+  
+  vector_r_price.addEventListener("click", handleClickR);
+  vector_l_price.addEventListener("click", handleClickL);
+   
 
 document.getElementById("Vector_r").addEventListener("click", function() {
   var block1 = document.getElementById("block_interes_1");
